@@ -11,9 +11,8 @@
 typedef struct structFormat
 {
 	char *type;
-	int (*f)();
+	int (*f)(va_list);
 } structFormat;
-
 
 int _printf(const char *format, ...);
 int print_operations(const char *format, structFormat *opsArr, va_list args);
