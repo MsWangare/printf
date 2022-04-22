@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
  * _printf - mimic printf from stdio
@@ -14,16 +15,21 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i;
-	va_list arg;
+	int num = 0;
+	va_list args;
+
+	structFormat operations[] = {
+		{"c", print_char},
+		{"s", print_string},
+		{NULL, NULL}
+	};
 
 	if (format == NULL)
 		return (-1);
 
-	i = 0;
-	while (format[i] != '\0')
-	{
-		
-		i++;
-	}
+	va_start(args, format);
+	num = print_operations(format, operations, args);
+	va_end(args);
+
+	return (num);
 }
